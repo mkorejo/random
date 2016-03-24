@@ -1,7 +1,8 @@
 #Place your License File contents here
 #Evaluation
-SERVER this_host ANY 27000
+SERVER $HOSTNAME ANY 27000
 VENDOR ibmratl
+VENDOR telelogic
 VENDOR rational
 INCREMENT TLSTOK ibmratl 2.0 15-jan-2017 999 vendor_info="0|IBM \
 	Rational Main Token Feature|0" ISSUED=24-Mar-2016 \
