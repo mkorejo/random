@@ -1,0 +1,474 @@
+(C) Copyright 2011 IBM Corp.  All rights reserved.
+
+Using AdminCEA.py
+-----------------
+
+Overview
+--------
+AdminCEA.py is a wsadmin script library file that includes procedures for
+displaying and configuring the settings associated with the Communications
+Enabled Applications (CEA) feature of IBM WebSphere® Application Server V8.0.
+
+Note: Command line help information is not available for the procedures
+included in this version of AdminCEA.py.
+
+
+Adding AdminCEA.py to WebSphere Application Server
+--------------------------------------------------
+To add AdminCEA.py to WebSphere Application Server, do the following:
+
+1. Create the following directory:
+
+app_server_root/scriptLibraries/communications/V80
+
+Replace "app_server_root" with the actual application server root directory;
+for example,
+
+Windows
+C:\Program Files\IBM\WebSphere\AppServer
+
+Other Operating Systems
+/opt/IBM/WebSphere/AppServer
+
+2. Copy AdminCEA.py to the directory that you created in step 1.
+
+The next time that you start wsadmin, the new procedures will be automatically
+sourced into the wsadmin command shell.
+
+
+Using the procedures included in AdminCEA.py
+--------------------------------------------
+To run a procedure from the wsadmin command line, do the following:
+
+1. Run the following command to start wsadmin in interactive mode:
+
+profile_root/bin/wsadmin -lang jython
+
+Replace "profile_root" with the actual profile root directory; for example,
+
+Windows
+C:\Program Files\IBM\WebSphere\AppServer\profiles
+
+Other Operating Systems
+/opt/IBM/WebSphere/AppServer/profiles
+
+2. Call the procedure, passing in any required options; for example,
+
+AdminCEA.createRouter("RouterOne", "RouterProviderOne")
+
+You can also call the procedures from a wsadmin script.
+
+For further information about WebSphere Application Server script libraries,
+see the following topic in the Feature Pack for CEA Information Center:
+
+Scripting the application serving environment (wsadmin) > Using the script
+library to automate the application serving environment using wsadmin scripting
+
+To locate the appropriate Information Center for your version of Websphere
+Application Server, see the following page:
+
+http://www.ibm.com/software/webservers/appserv/was/library/
+
+
+Procedures for viewing and configuring CEA settings
+---------------------------------------------------
+
+showCEASettingsForCell
+---------------------------
+Use this procedure to show the context root and virtual host for the CEA
+communications service application.
+
+Syntax
+showCEASettingsForCell()
+
+Example usage
+
+showCEASettingsForCell()
+
+
+configureCEASettingsForCell
+---------------------------
+Use this procedure to define the context root and virtual host for the CEA
+communications service application.
+
+Syntax
+configureCEASettingsForCell(context_root, virtual_host)
+
+context_root
+Specifies the context root of the REST interface. Use this option to assign a
+different context root to the REST interface. The context root is combined with
+the defined servlet mapping for the REST interface to compose the full URL that
+users type to make a REST request. For example, if the context root is
+/gettingstarted and the servlet mapping is CommServlet/call, then the URL is
+http://host:port/gettingstarted/CommServlet/call.
+
+virtual_host
+Specifies the name of the virtual host to which the REST interface is currently
+mapped.
+
+Example usage
+
+Windows
+configureCEASettingsForCell("\commsvc.rest", "default_host")
+
+Other Operating Systems
+configureCEASettingsForCell("/commsvc.rest", "default_host")
+
+
+showCEASettingsForServer
+------------------------
+Use this procedure to display the state of the CEA communications service
+application, REST interface maximum hold time, telephony access method, and
+related telephony interface settings for a specific server.
+
+Syntax
+showCEASettingsForServer(node_name, server_name)
+
+node_name
+Specifies the node on which the server is located.
+
+server_name
+Specifies the name of the server that you are using this procedure to configure.
+
+Example usage
+configureCEASettingsForServer("localhostNode01", "server1")
+
+
+configureCEASettingsForServer
+-----------------------------
+Use this procedure to define the state of the CEA communications service
+application, REST interface maximum hold time, telephony access method, and
+related telephony interface settings for a specific server.
+
+Syntax
+configureCEASettingsForServer(node_name, server_name, enable_CEA,
+max_request_hold_time, telephony_access_method, gateway_address, gateway_port,
+gatewayProtocol, extract_username_from_request, super_username,
+third_party_WSDL_provider)
+
+node_name
+Specifies the node on which the server is located.
+
+server_name
+Specifies the name of the server that you are using this procedure to configure.
+
+enable_CEA
+Specifies that you want to enable CEA. Valid values are true and false. The
+default value is false.
+
+max_request_hold_time
+Specifies the time in seconds in which a GET /event call to the REST interface
+waits for new or changed data or status before timing out. The default value
+is 30.
+
+telephony_access_method
+Specifies whether you want to use a SIP CTI gateway or a third-party WSDL
+provider for telephony access. Valid values are SIP_CTI_GATEWAY and
+THIRD_PARTY_WEB_SERVICE. The default value is SIP_CTI_GATEWAY.
+
+gateway_address
+Specifies the address or fully qualified domain name, FQDM, of the CTI gateway
+that you want connected to by the CEA service. The default value is localhost.
+
+gateway_port
+Specifies the port of the CTI gateway that you want to be connected to by the
+CEA service. The default value is 5060.
+
+gatewayProtocol
+Specifies the protocol to be used when connecting to the CTI, TR/87, gateway.
+Valid values are TCP, UDP, and TLS. The default value is TCP.
+
+extract_username_from_request
+Specifies that you want to extract the user name from the HTTP request. Valid
+values are true and false. The default value is false. When this functionality
+is enabled, an attempt is made to extract the user name from the HTTP request.
+If the name cannot be extracted, the Superuser name is used. This name is used
+when opening a new TR/87 session to the CTI gateway.
+
+Avoid trouble: After you enable the Extract user name from request option, an
+attempt is made to extract the user name from the HTTP request. However, the
+user name has a null value even for authenticated users. The CEA Rest Service
+Servlet is an unprotected URI. Thus, you also must enable the Use available
+authentication data when an unprotected URI is accessed option. Use the
+administrative console to enable the Use available authentication data when an
+unprotected URI is accessed option under Security > Global security > Web and
+SIP security > General settings. After you enable this option, the user name is
+available to the CEA Rest Service Servlet during the request.
+
+super_username
+Specifies the name that is used when opening a new TR/87 session to the
+configured CTI gateway. This requires that the CTI gateway be configured with a
+superuser account that is used to create phone calls on behalf of all end users.
+The default value is ceauser.
+
+third_party_WSDL_provider
+Specifies that you want to use a third-party Web services provider for
+telephony access. Instead of using SIP CTI, this approach uses a third-party
+service that has implemented specific Web services to utilize a different
+method to connect to the telephony infrastructure.
+
+Example usage
+configureCEASettingsForServer("localhostNode01", "server1", "false | true",
+"30", "SIP_CTI_GATEWAY | THIRD_PARTY_WEB_SERVICE", "localhost", "5060",
+"TCP | UDP | TLS", "false | true", "ceauser", '""')
+
+
+showCEASettingsForCluster
+-------------------------
+Use this procedure to show the state of the CEA communications service
+application, REST interface maximum hold time, telephony access method, and
+related telephony interface settings for a specific cluster.
+
+Syntax
+configureCEASettingsForCluster(cluster_name)
+
+cluster_name
+Specifies the name of the cluster that you are using this procedure to configure.
+
+Example usage
+configureCEASettingsForCluster("cluster1")
+
+
+configureCEASettingsForCluster
+------------------------------
+Use this procedure to define the state of the CEA communications service
+application, REST interface maximum hold time, telephony access method, and
+related telephony interface settings for a specific cluster.
+
+Syntax
+configureCEASettingsForCluster(cluster_name, enable_CEA, max_request_hold_time,
+telephony_access_method, gateway_address, gateway_port, gatewayProtocol,
+extract_username_from_request, super_username, third_party_WSDL_provider)
+
+cluster_name
+Specifies the name of the cluster that you are using this procedure to configure.
+
+enable_CEA
+Specifies that you want to enable CEA. Valid values are true and false. The
+default value is false.
+
+max_request_hold_time
+Specifies the time in seconds in which a GET /event call to the REST interface
+waits for new or changed data or status before timing out. The default value
+is 30.
+
+telephony_access_method
+Specifies whether you want to use a SIP CTI gateway or a third-party WSDL
+provider for telephony access. Valid values are SIP_CTI_GATEWAY and
+THIRD_PARTY_WEB_SERVICE. The default value is SIP_CTI_GATEWAY.
+
+gateway_address
+Specifies the address or fully qualified domain name, FQDM, of the CTI gateway
+that you want connected to by the CEA service. The default value is localhost.
+
+gateway_port
+Specifies the port of the CTI gateway that you want to be connected to by the
+CEA service. The default value is 5060.
+
+gatewayProtocol
+Specifies the protocol to be used when connecting to the CTI, TR/87, gateway.
+Valid values are TCP, UDP, and TLS. The default value is TCP.
+
+extract_username_from_request
+Specifies that you want to extract the user name from the HTTP request. Valid
+values are true and false. The default value is false. When this functionality
+is enabled, an attempt is made to extract the user name from the HTTP request.
+If the name cannot be extracted, the Superuser name is used. This name is used
+when opening a new TR/87 session to the CTI gateway.
+
+Avoid trouble: After you enable the Extract user name from request option, an
+attempt is made to extract the user name from the HTTP request. However, the
+user name has a null value even for authenticated users. The CEA Rest Service
+Servlet is an unprotected URI. Thus, you also must enable the Use available
+authentication data when an unprotected URI is accessed option. Use the
+administrative console to enable the Use available authentication data when an
+unprotected URI is accessed option under Security > Global security > Web and
+SIP security > General settings. After you enable this option, the user name is
+available to the CEA Rest Service Servlet during the request.
+
+super_username
+Specifies the name that is used when opening a new TR/87 session to the
+configured CTI gateway. This requires that the CTI gateway be configured with a
+superuser account that is used to create phone calls on behalf of all end users.
+The default value is ceauser.
+
+third_party_WSDL_provider
+Specifies that you want to use a third-party Web services provider for
+telephony access. Instead of using SIP CTI, this approach uses a third-party
+service that has implemented specific Web services to utilize a different
+method to connect to the telephony infrastructure.
+
+Example usage
+configureCEASettingsForCluster("cluster1", "false | true", "30",
+"SIP_CTI_GATEWAY | THIRD_PARTY_WEB_SERVICE", "localhost", "5060",
+"TCP | UDP | TLS", "false | true", "ceauser", '""')
+
+
+Procedures for managing SIP application routers
+-----------------------------------------------
+
+showAllRouters
+--------------
+Use this procedure to show the targets assigned to the default SIP application
+router and the startup order (weight) of the applications deployed on each
+target, as well as the targets assigned to each custom SIP application router.
+
+Syntax
+showAllRouters()
+
+Example usage
+showAllRouters()
+
+
+showDefaultRouter
+-----------------
+Use this procedure to show the targets assigned to the default SIP application
+router and the startup order (weight) of the applications deployed on each
+target.
+
+Syntax
+showDefaultRouter()
+
+Example usage
+showDefaultRouter()
+
+
+showAllCustomRouters
+--------------------
+Use this procedure to show the targets assigned to each custom SIP application
+router.
+
+Syntax
+showAllCustomRouters()
+
+Example usage
+showAllCustomRouters()
+
+
+createRouter
+------------
+Use this procedure to create a new custom SIP application router.
+
+Syntax
+createRouter(router_name, router_provider)
+
+router_name
+Specifies the logical name representing the application router.
+
+router_provider
+Specifies the provider name of the application router. This router provider is
+defined in the custom application router jar file, which must be in the
+application server's classpath.
+
+Example usage
+createRouter("RouterOne", "RouterProviderOne")
+
+
+modifyRouter
+------------
+Use this procedure to modify the name and description of a custom SIP
+application router.
+
+Syntax
+modifyRouter(router_name, new_router_name, new_router_provider)
+
+router_name
+Specifies the logical name representing the application router.
+
+new_router_name
+Specifies the new logical name that you want to use to represent the
+application router.
+
+new_router_provider
+Specifies the new provider name of the application router. This router provider
+is defined in the custom application router jar file, which must be in the
+application server's classpath.
+
+Example usage
+modifyRouter("RouterOne", "Router1", "RouterProvider1")
+
+
+deleteRouter
+------------
+Use this procedure to delete a custom SIP application router.
+
+Syntax
+deleteRouter(router_name)
+
+router_name
+Specifies the logical name representing the application router.
+
+Example usage
+deleteRouter("RouterOne")
+
+
+moveServerToCustomRouter
+------------------------
+Use this procedure to move a server to a custom SIP application router.
+
+Syntax
+moveServerToCustomRouter(node_name, server_name, router_name)
+
+node_name
+Specifies the node on which the server is located.
+
+server_name
+Specifies the name of the server that you want to move to a custom SIP
+application router.
+
+router_name
+Specifies the logical name representing the application router.
+
+Example usage
+moveServerToCustomRouter("localhostNode01", "server1", "RouterOne")
+
+
+moveServerToDefaultRouter
+-------------------------
+Use this procedure to move a server to the default SIP application router.
+
+Syntax
+moveServerToDefaultRouter(node_name, server_name)
+
+node_name
+Specifies the node on which the server is located.
+
+server_name
+Specifies the name of the server that you want to move to the default SIP
+application router.
+
+Example usage
+moveServerToDefaultRouter("localhostNode01", "server1")
+
+
+moveClusterToCustomRouter
+-------------------------
+Use this procedure to move a cluster to a custom SIP application router.
+
+Syntax
+moveClusterToCustomRouter(cluster_name, router_name)
+
+cluster_name
+Specifies the name of the cluster that you want to move to a custom SIP
+application router.
+
+router_name
+Specifies the logical name representing the application router.
+
+Example usage
+moveClusterToCustomRouter("cluster1", "RouterOne")
+
+
+moveClusterToDefaultRouter
+--------------------------
+Use this procedure to move a cluster to the default SIP application router.
+
+Syntax
+moveClusterToDefaultRouter(cluster_name)
+
+cluster_name
+Specifies the name of the cluster that you want to move to the default SIP
+application router.
+
+Example usage
+moveClusterToDefaultRouter("cluster1")

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="IBM Corporation 2006, 2011" />
+<meta name="DC.Rights.Owner" content="IBM Corporation 2006, 2011" />
+<!-- All rights reserved. Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" href="book.css" type="text/css" />
+
+<title></title>
+</head>
+
+<body>
+<!-- Header information -->
+<iframe src="header.html" scrolling="no" frameborder="0" style=
+"width: 100%; height:75px;"><a href="header.html">Hmm, you are using a very old browser.
+Click here to go directly to included content.</a></iframe>
+
+<h1 class="topictitle1">Overview</h1>
+
+<p>The sample application represents a fictitious online plant store where one can order
+and purchase flowers, trees, vegetables, and accessories. You can view an online catalog,
+select items, and add them to a cart. When the cart contains items, you can proceed to
+log in, supply credit card information, and checkout.</p>
+
+<p>This version of PlantsByWebSphere Ajax Edition has been further enhanced to demonstrate
+the computer-telephony integration and Web collaboration widgets included with
+IBM&reg; WebSphere&reg; Application Server V8.0. For further information about the enhancements,
+see <a href="cea_introduction.html">Introduction to Communications Enabled Applications</a>.</p>
+
+<p>The application serves as an example of a Web application that someone might attempt
+to develop. This application contains model, presentation, and controller layers that can
+be developed. Additionally, Ajax-style architecture is added through the JavaScript
+<a href="http://www.dojotoolkit.org" target="_blank">Dojo Toolkit</a>. Specifically, the
+use of various Dojo widgets and enablement of drag-and-drop capabilities for the shopping
+cart are added. Figure 1.0 illustrates some of the features of the PlantsByWebSphere
+application.</p>
+
+<p><img src="./images/plantsbywebsphere_pic.jpg" /></p>
+
+<p>To support drag and drop, a number
+of Dojo widget controls were created. The widgets include support for displaying the
+inventory in a grid, displaying detail information on the items and dragging items to a
+shopping cart. When you click <b>check out</b>, the content of the shopping cart widget
+is sent to the server for processing. The grid widget that displays the content of the
+catalog derives the information by issuing a request to the server using the
+dojo.xhr(Get,Put). The response from the server is sent back in XML format and contains
+detail information and a Universal Resource Locator (URL) reference to where the image is
+located. Figure 2.0 shows the general components discussed previously.</p>
+
+<p><img src="./images/plantsbywebsphere_widgets.jpg" /></p>
+
+<h1 class="topictitle1">Server Side</h1>
+<p>The PlantsByWebSphere Ajax Edition application also includes
+an additional adapter layer using the Remote Procedure Call Adapter (RPCAdapter).
+The RPCAdapter library can be used to map traditional J2EE constructs
+such as Enterprise Java Beans (EJBs), Web Services, and POJOs
+to lightweight constructs such JavaScript Object Notation (JSON) or XML data. The data
+can easily be consumed and rendered by JavaScript based clients using Dojo.
+In the case of PlantsByWebSphere Ajax Edition, the RPCAdapter is used to map client side GET
+requests to "legacy" EJB or Servlet session data. The data is returned as XML and used as
+input to construct the Dojo widgets within the browser.</p>
+
+<p>Additional information on this application can be found in the following IBM
+developerWorks&reg; articles:</p>
+<ul>
+<li><a href="http://www.ibm.com/developerworks/library/wa-aj-w2fpak/">Create Ajax-style
+architectures with the IBM Web 2.0 Feature Pack</a></li>
+<li><a href="http://www.ibm.com/developerworks/websphere/techjournal/0802_haverlock/0802_haverlock.html">
+A look at the WebSphere Application Server Feature Pack for Web 2.0</a></li>
+</ul>
+
+<iframe src="footer.html" scrolling="no" frameborder="0" style="width: 100%;"><a href="footer.html">
+Hmm, you are using a very old browser. Click here to go directly to included content.</a>
+</iframe>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <script>
+            //try and determine what language the browser is running in to redirect 
+            //to the right page.
+            var lang   = "en";
+            var locale = navigator.language?navigator.language:navigator.userLanguage;
+            
+            function startsWith(str, frag){
+                if(str.indexOf(frag) === 0){
+                    return true;
+                }
+                return false;
+            }
+
+            if(locale){
+                locale = locale.toLowerCase();
+                if(startsWith(locale, "es-")){
+                    lang = "es";
+                }else if(startsWith(locale, "de-")){
+                    lang = "de";
+                }else if(startsWith(locale, "it-")){
+                    lang = "it";
+                }else if(startsWith(locale, "tr-")){
+                    lang = "en";
+                }else if(startsWith(locale, "cs-")){
+                    lang = "en";
+                }else if(startsWith(locale, "pl-")){
+                    lang = "en";
+                }else if(startsWith(locale, "pt-br")){
+                    lang = "pt_BR";
+                }else if(startsWith(locale, "pt-")){
+                    lang = "en";
+                }else if(startsWith(locale, "fr-")){
+                    lang = "fr";
+                }else if(startsWith(locale, "ko-")){
+                    lang = "en";
+                }else if(startsWith(locale, "zh-tw")){
+                    lang = "en";
+                    if (startsWith(lang, "en")) {
+                        //No translation, so fall back to regular chinese.
+                        lang = "en";
+                    }
+                }else if(startsWith(locale, "zh-")){
+                    lang = "en";
+                }else if(startsWith(locale, "ja-")){
+                    lang = "ja";
+                }
+            }
+            var docPage = lang + "/index.html";
+            window.location.href = docPage;
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
