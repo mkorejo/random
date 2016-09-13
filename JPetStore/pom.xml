@@ -1,13 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<servers>
-		<server>
-				<username>admin</username>
-				<password>AP6GyUkSWLNvDu467pAjFiEtowS</password>
-				<id>central</id>
-		</server>
-	</servers>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mybatis</groupId>
 	<artifactId>jpetstore</artifactId>
@@ -93,13 +86,6 @@
 			<version>2.2.8</version>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
-		<repository>
-        <id>central</id>
-        <name>mmk-plugins-release</name>
-        <url>http://169.54.37.222/artifactory/plugins-release-local</url>
-    </repository>
-	</distributionManagement>
 	<build>
 		<finalName>jpetstore</finalName>
 		<plugins>
