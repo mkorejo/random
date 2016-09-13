@@ -86,15 +86,13 @@
 			<version>2.2.8</version>
 		</dependency>
 	</dependencies>
-	<servers>
+	<distributionManagement>
 		<server>
 	      <username>admin</username>
 	      <password>AP6GyUkSWLNvDu467pAjFiEtowS</password>
 	      <id>central</id>
 	  </server>
-	</servers>
-	<distributionManagement>
-    <repository>
+		<repository>
         <id>central</id>
         <name>mmk-plugins-release</name>
         <url>http://169.54.37.222/artifactory/plugins-release-local</url>
