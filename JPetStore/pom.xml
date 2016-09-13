@@ -91,7 +91,7 @@
         <id>central</id>
         <name>mmk-plugins-release</name>
         <url>http://169.54.37.222/artifactory/plugins-release-local</url>
-    <repository>
+    </repository>
 	</distributionManagement>
 	<build>
 		<finalName>jpetstore</finalName>
