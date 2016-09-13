@@ -5,7 +5,7 @@
 	<groupId>org.mybatis</groupId>
 	<artifactId>jpetstore</artifactId>
 	<packaging>war</packaging>
-	<version>6.0.2-SNAPSHOT</version>
+	<version>6.0.2-snapshot</version>
 	<name>JPetStore Demo 6.12</name>
 	<url>http://www.mybatis.org</url>
 	<dependencies>
