@@ -86,6 +86,13 @@
 			<version>2.2.8</version>
 		</dependency>
 	</dependencies>
+	<servers>
+		<server>
+	      <username>admin</username>
+	      <password>AP6GyUkSWLNvDu467pAjFiEtowS</password>
+	      <id>central</id>
+	  </server>
+	</servers>
 	<distributionManagement>
     <repository>
         <id>central</id>
