@@ -23,7 +23,7 @@
 	      <groupId>ognl</groupId>
 	      <artifactId>ognl</artifactId>
 	      <version>2.6.9</version>
-	    </dependency>		
+	    </dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -86,6 +86,13 @@
 			<version>2.2.8</version>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+    <snapshotRepository>
+        <id>central</id>
+        <name>mmk-plugins-release</name>
+        <url>http://169.54.37.222/artifactory/plugins-release-local</url>
+    </snapshotRepository>
+	</distributionManagement>
 	<build>
 		<finalName>jpetstore</finalName>
 		<plugins>
