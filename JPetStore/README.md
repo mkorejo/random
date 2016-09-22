@@ -1,8 +1,10 @@
 # spring3 + sprite + mybatis
 
-sample from: 
+sample from:
 
 http://mybatis.googlecode.com/svn/sub-projects/jpetstore-6/trunk/
+
+^^ None of these links actually work vv
 
 ```
 git svn clone http://mybatis.googlecode.com/svn/sub-projects/jpetstore-6/trunk/
