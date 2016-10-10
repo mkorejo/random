@@ -87,11 +87,17 @@
 		</dependency>
 	</dependencies>
 	<distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>mmk-plugins-release</name>
-        <url>http://169.54.37.222/artifactory/plugins-release-local</url>
+		<repository>
+      <id>UCB</id>
+      <name>IBM UrbanCode Build Repo</name>
+      <url>${env.UCB_WEB_URL}rest/maven2dist/${env.UCB_BUILD_LIFE_ID}</url>
     </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>UCB</id>
+      <name>IBM UrbanCode Build Repo</name>
+      <url>${env.UCB_WEB_URL}rest/maven2dist/${env.UCB_BUILD_LIFE_ID}</url>
+    </snapshotRepository>
   </distributionManagement>
 	<build>
 		<finalName>jpetstore</finalName>
