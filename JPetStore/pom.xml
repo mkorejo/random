@@ -90,13 +90,13 @@
 		<repository>
       <id>UCB</id>
       <name>IBM UrbanCode Build Repo</name>
-      <url>${env.UCB_WEB_URL}rest/maven2dist/${env.UCB_BUILD_LIFE_ID}</url>
+      <url>${env.WEB_URL}rest/maven2dist/${env.BUILD_LIFE_ID}</url>
     </repository>
     <snapshotRepository>
       <uniqueVersion>false</uniqueVersion>
       <id>UCB</id>
       <name>IBM UrbanCode Build Repo</name>
-      <url>${env.UCB_WEB_URL}rest/maven2dist/${env.UCB_BUILD_LIFE_ID}</url>
+      <url>${env.WEB_URL}rest/maven2dist/${env.BUILD_LIFE_ID}</url>
     </snapshotRepository>
   </distributionManagement>
 	<build>
