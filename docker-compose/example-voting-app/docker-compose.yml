@@ -1,0 +1,48 @@
+version: "2"
+
+services:
+  vote:
+    image: registry.oneibmcloud.com/mkorejo/examplevotingapp_vote:latest
+    command: python app.py
+    ports:
+      - "${VOTE-PORT}:80"
+    networks:
+      - front-tier
+      - back-tier
+
+  result:
+    image: registry.oneibmcloud.com/mkorejo/examplevotingapp_result:latest
+    command: nodemon --debug server.js
+    ports:
+      - "${RESULT-PORT}:80"
+      - "5858:5858"
+    networks:
+      - front-tier
+      - back-tier
+
+  worker:
+    image: registry.oneibmcloud.com/mkorejo/examplevotingapp_worker:latest
+    networks:
+      - back-tier
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports: ["6379"]
+    networks:
+      - back-tier
+
+  db:
+    image: postgres:9.4
+    container_name: db
+    volumes:
+      - "${POSTGRES-DATA}:/var/lib/postgresql/data"
+    networks:
+      - back-tier
+
+volumes:
+  db-data:
+
+networks:
+  front-tier:
+  back-tier:
