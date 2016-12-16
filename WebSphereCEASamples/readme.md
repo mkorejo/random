@@ -1,4 +1,3 @@
-<body id="sampletask"><a name="sampletask"><!-- --></a>
 <div id="sample_header">
     <img class="sample_header_icon_left" alt="WebSphere software logo" src="images/WS_BrandMark_18x120.png"/>
     <img class="sample_header_icon_right" alt="IBM Logo" src="images/ibm-logo-white.gif"/>
