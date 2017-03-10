@@ -1,0 +1,499 @@
+{
+    "name": "Property Reporting",
+    "description": "A utility that reports on all properties for an environment in an application.",
+    "rootActivity": {
+        "edges": [
+            {
+                "to": "Return All Component Environment Properties",
+                "from": "Second Base Resource?",
+                "type": "VALUE",
+                "value": ""
+            },
+            {
+                "to": "1eada597ebaf7aa5db230cdde53e70",
+                "from": "Examine BR2 Subtree",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Return Application Environment Base Resources",
+                "type": "ALWAYS",
+                "value": ""
+            },
+            {
+                "to": "Return List of Application Components",
+                "from": "Return Application Properties",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Second Base Resource?",
+                "from": "Examine BR1 Subtree",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Return All Component Properties",
+                "from": "Return List of Application Components",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Examine BR2 Subtree",
+                "from": "Second Base Resource?",
+                "type": "VALUE",
+                "value": "2"
+            },
+            {
+                "to": "1eada597ebaf7aa5db230cdde53e70",
+                "from": "Return All Component Environment Properties",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Return Application Properties",
+                "type": "ALWAYS",
+                "value": ""
+            },
+            {
+                "to": "7e5253bd0ec58d2532962a59d00772",
+                "from": "Generate Final Output File",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Generate Final Output File",
+                "from": "1eada597ebaf7aa5db230cdde53e70",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Examine BR1 Subtree",
+                "from": "Parse Base Resources",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Return Environment Properties",
+                "from": "Return All Component Properties",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Return All Component Environment Properties",
+                "from": "Return Environment Properties",
+                "type": "SUCCESS",
+                "value": ""
+            },
+            {
+                "to": "Parse Base Resources",
+                "from": "Return Application Environment Base Resources",
+                "type": "SUCCESS",
+                "value": ""
+            }
+        ],
+        "offsets": [
+            {
+                "name": "7e5253bd0ec58d2532962a59d00772",
+                "x": 122.80521262002753,
+                "y": 1150,
+                "h": 90,
+                "w": 150
+            },
+            {
+                "name": "Return Application Environment Base Resources",
+                "x": 30,
+                "y": 140,
+                "h": 100,
+                "w": 660
+            },
+            {
+                "name": "Return List of Application Components",
+                "x": -484.47265625,
+                "y": 290,
+                "h": 100,
+                "w": 540
+            },
+            {
+                "name": "Return Application Properties",
+                "x": -440,
+                "y": 140,
+                "h": 100,
+                "w": 440
+            },
+            {
+                "name": "Return All Component Properties",
+                "x": -448.9453125,
+                "y": 440,
+                "h": 100,
+                "w": 480
+            },
+            {
+                "name": "Parse Base Resources",
+                "x": 174.0625,
+                "y": 290,
+                "h": 100,
+                "w": 380
+            },
+            {
+                "name": "Return Environment Properties",
+                "x": -435,
+                "y": 590,
+                "h": 100,
+                "w": 460
+            },
+            {
+                "name": "Second Base Resource?",
+                "x": 55,
+                "y": 590,
+                "h": 100,
+                "w": 630
+            },
+            {
+                "name": "Examine BR1 Subtree",
+                "x": 202.03125,
+                "y": 440,
+                "h": 100,
+                "w": 330
+            },
+            {
+                "name": "1eada597ebaf7aa5db230cdde53e70",
+                "x": 123.90260631001377,
+                "y": 890,
+                "h": 60,
+                "w": 150
+            },
+            {
+                "name": "Return All Component Environment Properties",
+                "x": -370,
+                "y": 740,
+                "h": 100,
+                "w": 630
+            },
+            {
+                "name": "Generate Final Output File",
+                "x": -2.1947873799724675,
+                "y": 1000,
+                "h": 100,
+                "w": 400
+            },
+            {
+                "name": "Examine BR2 Subtree",
+                "x": 290,
+                "y": 740,
+                "h": 100,
+                "w": 330
+            }
+        ],
+        "layoutMode": "auto",
+        "type": "graph",
+        "name": "0a6b9b62-9e1f-4384-b752-ab2a9b57e4af",
+        "children": [
+            {
+                "type": "finish",
+                "name": "7e5253bd0ec58d2532962a59d00772",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Send HTTP Call",
+                "pluginName": "Web Utilities",
+                "pluginVersion": 7,
+                "properties": {
+                    "url": "${p:url}\/cli\/environment\/getBaseResources?application=${p:UseApplication}&environment=${p:UseEnvironment}",
+                    "method": "GET",
+                    "headers": "Accept: application\/json",
+                    "data": "",
+                    "contentType": "*\/*",
+                    "untrustedSSL": "true",
+                    "username": "${p:user}",
+                    "password": "",
+                    "outFile": "environmentBaseResources.txt"
+                },
+                "type": "plugin",
+                "name": "Return Application Environment Base Resources",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "postProcessingScript": {
+                    "id": "08c22274-2e6c-497c-9c20-658b125422ed",
+                    "name": "baseResourceProcessing",
+                    "description": "Returns the IDs of an environment's base resources (up to 2)",
+                    "body": "var exit = properties.get('exitCode');\n\nscanner.register(\"Number of base resources in this environment is \", function(lineNumber, line) {\n    var br_count = line.replace(\"Number of base resources in this environment is \",\"\");\n    properties.put(\"br_count\",br_count);\n    commandOut.print(\"br_count registered\\n\");\n});\n\nscanner.register(\"BR1_id=\", function(lineNumber, line) {\n    var br1_id = line.replace(\"BR1_id=\",\"\");\n    properties.put(\"BR1_id\",br1_id);\n    commandOut.print(\"BR1_id registered\\n\");\n});\n\nscanner.register(\"BR2_id=\", function(lineNumber, line) {\n    var br2_id = line.replace(\"BR2_id=\",\"\");\n    properties.put(\"BR2_id\",br2_id);\n    commandOut.print(\"BR2_id registered\\n\");\n});\n\nscanner.scan()\n\nif (exit == 0) {\n    properties.put('Status', 'Success');\n}\nelse {\n    properties.put('Status', 'Failure');\n}\n"
+                },
+                "commandName": "Run Groovy Script",
+                "pluginName": "Groovy",
+                "pluginVersion": 9,
+                "properties": {
+                    "groovyHome": "${GROOVY_HOME}",
+                    "scriptBody": "import groovy.json.JsonSlurper\n\nFile f = new File('environmentBaseResources.txt')\ndef slurper = new JsonSlurper()\ndef raw_json = f.getText().replace(\"\\\\\/\", '\/')\nbase_resources = slurper.parseText(raw_json)\n\nprintln \"Number of base resources in this environment is \" + base_resources.size()\n\nfor (i = 1; i <= base_resources.size(); i++) {\n   println \"BR\" + i + \"_name=\" + base_resources[i-1].name\n   println \"BR\" + i + \"_id=\" + base_resources[i-1].id\n   println \"BR\" + i + \"_path=\" + base_resources[i-1].path\n   }\n"
+                },
+                "type": "plugin",
+                "name": "Parse Base Resources",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Send HTTP Call",
+                "pluginName": "Web Utilities",
+                "pluginVersion": 7,
+                "properties": {
+                    "url": "${p:url}\/cli\/application\/getProperties?application=${p:UseApplication}",
+                    "method": "GET",
+                    "headers": "",
+                    "data": "",
+                    "contentType": "*\/*",
+                    "untrustedSSL": "true",
+                    "username": "${p:user}",
+                    "password": "",
+                    "outFile": "applicationProps.txt"
+                },
+                "type": "plugin",
+                "name": "Return Application Properties",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Send HTTP Call",
+                "pluginName": "Web Utilities",
+                "pluginVersion": 7,
+                "properties": {
+                    "url": "${p:url}\/cli\/environment\/getProperties?application=${p:UseApplication}&environment=${p:UseEnvironment}",
+                    "method": "GET",
+                    "headers": "Accept: application\/json",
+                    "data": "",
+                    "contentType": "*\/*",
+                    "untrustedSSL": "true",
+                    "username": "${p:user}",
+                    "password": "",
+                    "outFile": "environmentProps.txt"
+                },
+                "type": "plugin",
+                "name": "Return Environment Properties",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "Send HTTP Call",
+                "pluginName": "Web Utilities",
+                "pluginVersion": 7,
+                "properties": {
+                    "url": "${p:url}\/cli\/application\/componentsInApplication?application=${p:UseApplication}",
+                    "method": "GET",
+                    "headers": "Accept: application\/json\n",
+                    "data": "",
+                    "contentType": "*\/*",
+                    "untrustedSSL": "true",
+                    "username": "${p:user}",
+                    "password": "",
+                    "outFile": "applicationComponents.txt"
+                },
+                "type": "plugin",
+                "name": "Return List of Application Components",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "List Resources",
+                "pluginName": "Resource Utilities",
+                "pluginVersion": 1,
+                "properties": {
+                    "resourceRoot": "${p:Parse Base Resources\/BR1_id}",
+                    "nameFilter": "",
+                    "pathType": "full",
+                    "outputContentProperties": "true",
+                    "outputContentSecurity": "false",
+                    "outputContentFurtherDetails": "false",
+                    "outputFileName": "BR1.txt",
+                    "outputResultToWindow": "true"
+                },
+                "type": "plugin",
+                "name": "Examine BR1 Subtree",
+                "children": []
+            },
+            {
+                "propertyName": "${p:Parse Base Resources\/br_count}",
+                "type": "switch",
+                "name": "Second Base Resource?",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": false,
+                "impersonationUseSudo": false,
+                "commandName": "List Resources",
+                "pluginName": "Resource Utilities",
+                "pluginVersion": 1,
+                "properties": {
+                    "resourceRoot": "${p:Parse Base Resources\/BR2_id}",
+                    "nameFilter": "",
+                    "pathType": "full",
+                    "outputContentProperties": "true",
+                    "outputContentSecurity": "false",
+                    "outputContentFurtherDetails": "false",
+                    "outputFileName": "BR2.txt",
+                    "outputResultToWindow": "true"
+                },
+                "type": "plugin",
+                "name": "Examine BR2 Subtree",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": true,
+                "impersonationUseSudo": false,
+                "commandName": "Run Groovy Script",
+                "pluginName": "Groovy",
+                "pluginVersion": 9,
+                "properties": {
+                    "groovyHome": "${GROOVY_HOME}",
+                    "scriptBody": "import groovy.json.JsonSlurper\n\nFile f_component_list = new File('applicationComponents.txt')\ndef slurper = new JsonSlurper()\ndef raw_json = f_component_list.getText()\ncomponent_list = slurper.parseText(raw_json)\n\nFile f = new File('componentEnvironmentProps.txt')\nf.delete()\nf.createNewFile()\n\ndef curl_request\n\nfor (i = 0; i < component_list.size(); i++) {\n   cname = component_list[i].name\n   println \"Component name: \" + cname\n   \n   curl_request = [\"curl\",\"-k\",\"-u\",\"${p:user}:${p:password}\",\"-X\",\"GET\",\"${p:url}\/cli\/environment\/componentProperties?environment=${p:UseEnvironment}&component=${cname}\"].execute().text\n   println \"Component environment properties: \" + curl_request\n\n   f.append(cname)\n   f.append(':')\n   f.append(curl_request)\n   }"
+                },
+                "type": "plugin",
+                "name": "Return All Component Environment Properties",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": true,
+                "impersonationUseSudo": false,
+                "commandName": "Run Groovy Script",
+                "pluginName": "Groovy",
+                "pluginVersion": 9,
+                "properties": {
+                    "groovyHome": "${GROOVY_HOME}",
+                    "scriptBody": "import groovy.json.JsonSlurper\n\nFile f_component_list = new File('applicationComponents.txt')\ndef slurper = new JsonSlurper()\ndef raw_json = f_component_list.getText()\ncomponent_list = slurper.parseText(raw_json)\n\nFile f = new File('componentProps.txt')\nf.delete()\nf.createNewFile()\n\ndef curl_request\n\nfor (i = 0; i < component_list.size(); i++) {\n   cname = component_list[i].name\n   println \"Component name: \" + cname\n   \n   curl_request = [\"curl\",\"-k\",\"-u\",\"${p:user}:${p:password}\",\"-X\",\"GET\",\"${p:url}\/cli\/component\/getProperties?component=${cname}\"].execute().text\n   println \"Component properties: \" + curl_request\n\n   f.append(cname)\n   f.append(':')\n   f.append(curl_request)\n   }"
+                },
+                "type": "plugin",
+                "name": "Return All Component Properties",
+                "children": []
+            },
+            {
+                "allowFailure": false,
+                "useImpersonation": false,
+                "showHidden": true,
+                "impersonationUseSudo": false,
+                "commandName": "Run Groovy Script",
+                "pluginName": "Groovy",
+                "pluginVersion": 9,
+                "properties": {
+                    "groovyHome": "${GROOVY_HOME}",
+                    "scriptBody": "import groovy.json.JsonSlurper\n\ndef json_files = ['applicationProps.txt','componentProps.txt','componentEnvironmentProps.txt','environmentProps.txt']\ndef resource_files = ['BR1.txt']\n \ndef BR2_file = new File('BR2.txt')\nif (BR2_file.exists()) resource_files += 'BR2.txt'\n \ndef slurper = new JsonSlurper()       \/\/ For parsing JSON into an array\ndef raw_json                          \/\/ String to hold raw JSON\ndef comp_name                         \/\/ String to hold current component\ndef parsed_json                       \/\/ Array to access JSON contents\ndef file_index                        \/\/ Name of current file\ndef lines                             \/\/ Read lines of file into a List\ndef resource_path                     \/\/ Path to current resource in the resource output\ndef property_name                     \/\/ Hold the resource property name\ndef property_value                    \/\/ Hold the resource property value\nint counter\n\n\nFile working_file, output_file = new File(\"${p:propFile}\")\noutput_file.delete()\noutput_file.createNewFile()\n\ndef column_headers = \"Property Type\" + \"\\t\" + \"Component Name or Resource Path\" + \"\\t\" + \"Property Name\" + \"\\t\" + \"Property Value\" + \"\\n\"\noutput_file << column_headers\n\nfor (i = 0; i < json_files.size(); i++) {             \/\/ Iterate through JSON files first\n  file_index = json_files[i]\n  working_file = new File(file_index)\n  println \"******************** Currently processing \" + file_index + \" ********************\"\n  \n  if (file_index == 'componentProps.txt' || file_index == 'componentEnvironmentProps.txt') {\n    working_file.eachLine {                           \/\/ Step through each line\n      for (j = 0; j <= it.size()-1; j++) {\n        if (it[j] == ':') {                           \/\/ When you see the first colon then\n          comp_name = it[0..(j-1)]                    \/\/ save the component name\n          it = it[(j+1)..(it.size()-1)]               \/\/ substring the line to pure JSON\n          parsed_json = slurper.parseText(it)         \/\/ parse the JSON\n\n          for (k = 0; k <= parsed_json.size()-1; k++) {\n            println \"Component '\" + comp_name + \"' has property '\" + parsed_json[k].name + \"' with value '\" + parsed_json[k].value + \"'\"\n            output_file << file_index + \"\\t\" + comp_name + \"\\t\" + parsed_json[k].name + \"\\t\" + parsed_json[k].value + \"\\n\"\n            }\n          break                       \/\/ Break from for loop to next line in file after finding first ':'\n          }\n        }\n      }\n    }\n  else {\n    raw_json = working_file.getText()\n    parsed_json = slurper.parseText(raw_json)\n \n    for (j = 0; j <= parsed_json.size()-1; j++) {\n      println \"Property '\" + parsed_json[j].name + \"' has value '\" + parsed_json[j].value + \"'\"\n      output_file << file_index + \"\\t\" + \"\" + \"\\t\" + parsed_json[j].name + \"\\t\" + parsed_json[j].value + \"\\n\"\n      }\n    }\n  }\n\nfor (i = 0; i < resource_files.size(); i++) {         \/\/ Iterate through BR files second\n  file_index = resource_files[i]\n  working_file = new File(file_index)\n  println \"******************** Currently processing \" + file_index + \" ********************\"\n\n  lines = working_file.readLines()\n\n  for (j = 0; j < lines.size(); j++) {\n    if (lines[j].contains(\"path\") && !lines[j-1].contains(\"versionCount\")) {\n      resource_path = lines[j].split('-> ')[1]\n      println \"Resource found at \" + resource_path\n      }\n\n    if (lines[j].contains(\"roleProperties\")) {\n      counter = 1\n      while (lines[j+counter].contains(\"->\")) {                           \/\/ If the next line has a property then\n        property_name = lines[j+counter].split('-- ')[1]                  \/\/ get everything after the bullet marker on the next line\n        if (property_name.split(' -> ').size() > 1) {property_value = property_name.split(' -> ')[1]}\n        else {property_value = ''}\n        property_name = property_name.split(' ->')[0]                     \/\/ substring the line to everything before the property value\n        property_name = property_name.replaceAll(\"\\\\s\",\"\")\n        println \"Role property '\" + property_name + \"' found with value '\" + property_value + \"'\"\n        output_file << file_index + \"\\t\" + resource_path + \"\\t\" + property_name + \"\\t\" + property_value + \"\\n\"\n        counter++\n        }\n      }\n\n    if (lines[j].contains(\"resourceProperties\")) {\n      counter = 9\n      while (lines[j+counter].contains(\"->\")) {\n        property_name = lines[j+counter].split('-- ')[1]\n        property_name = property_name.split('-> ')[1]\n        property_value = lines[j+counter+1].split('-- ')[1]\n        property_value = property_value.split('-> ')[1]\n        println \"Ad hoc property '\" + property_name + \"' found with value '\" + property_value + \"'\"\n        output_file << file_index + \"\\t\" + resource_path + \"\\t\" + property_name + \"\\t\" + property_value + \"\\n\"\n        counter += 6\n        }\n      }\n    }\n  }"
+                },
+                "type": "plugin",
+                "name": "Generate Final Output File",
+                "children": []
+            },
+            {
+                "type": "join",
+                "name": "1eada597ebaf7aa5db230cdde53e70",
+                "children": []
+            }
+        ]
+    },
+    "properties": [
+        {
+            "name": "contextType",
+            "value": "Resource",
+            "description": "",
+            "secure": false
+        },
+        {
+            "name": "defaultResourceId",
+            "value": "c41fd4a7-6fca-4217-9275-251132c9eecb",
+            "description": "",
+            "secure": false
+        },
+        {
+            "name": "workingDir",
+            "value": "${p:resource\/work.dir}\/${p:process.name}",
+            "description": "",
+            "secure": false
+        }
+    ],
+    "propDefs": [
+        {
+            "name": "UseApplication",
+            "label": "Application",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "601500d9-2414-40b9-a909-5cc6316b8c95",
+            "required": true,
+            "description": "Application to target for property resolution",
+            "placeholder": ""
+        },
+        {
+            "name": "UseEnvironment",
+            "label": "Application Environment",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "a27c7421-eadd-4f06-808d-cf5d962b643c",
+            "required": true,
+            "description": "Environment to target for property resolution",
+            "placeholder": ""
+        },
+        {
+            "name": "user",
+            "label": "UCD Username",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "demo",
+            "required": true,
+            "description": "For authentication via REST or CLI",
+            "placeholder": ""
+        },
+        {
+            "name": "password",
+            "label": "UCD Password",
+            "pattern": "",
+            "type": "SECURE",
+            "value": "",
+            "required": true,
+            "description": "For authentication via REST or CLI",
+            "placeholder": ""
+        },
+        {
+            "name": "url",
+            "label": "UCD Server URL",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "https:\/\/130.211.144.12",
+            "required": true,
+            "description": "UCD Server URL",
+            "placeholder": ""
+        },
+        {
+            "name": "propFile",
+            "label": "Output File",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\/tmp\/property_resolution_output",
+            "required": true,
+            "description": "Name of the output file which will contain all the information",
+            "placeholder": ""
+        }
+    ],
+    "teamMappings": []
+}
