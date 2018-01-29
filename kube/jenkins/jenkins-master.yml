@@ -1,0 +1,60 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: jenkins-master-deployment
+  labels:
+    k8s-app: jenkins-master
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jenkins-master
+    spec:
+      containers:
+        - name: jenkins-master
+          image: quay.io/mkorejo/jenkins
+          ports:
+            - containerPort: 8080
+            - containerPort: 50000
+          env:
+            - name: JENKINS_OPTS
+              value: --prefix=/jenkins
+          volumeMounts:
+            - name: jenkins-data
+              mountPath: "/var/jenkins_home"
+      volumes:
+        - name: jenkins-data
+          hostPath:
+            path: /var/jenkins
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-master
+  labels:
+    k8s-app: jenkins-master
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: jenkins-master
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-slave-port
+  labels:
+    k8s-app: jenkins-master
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 50000
+    targetPort: 50000
+  selector:
+    app: jenkins-master
