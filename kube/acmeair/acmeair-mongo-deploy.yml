@@ -1,23 +1,25 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: mongo-deployment
+  labels:
+    k8s-app: acmeair-mongo
+  name: acmeair-mongo-deployment
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: mongo
+        name: acmeair-mongo
     spec:
       containers:
       - image: mongo
-        name: mongo
+        name: acmeair-mongo
         ports:
-        - name: mongo
-          containerPort: 27017
-          hostPort: 27017
+        - containerPort: 27017
         volumeMounts:
           - name: mongo-persistent-storage
             mountPath: /data/db
       volumes:
         - name: mongo-persistent-storage
+          hostPath:
+            path: /var/acmeair/db

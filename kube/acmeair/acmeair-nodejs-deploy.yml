@@ -1,17 +1,20 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: web-deployment
+  name: acmeair-nodejs-deployment
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        name: web
+        name: acmeair-nodejs
     spec:
       containers:
       - image: yanglei99/acmeair-nodejs
-        name: web
+        name: acmeair-nodejs
         ports:
-        - name: http-server
+        - name: http
           containerPort: 9080
+        env:
+        - name: MONGO_URL
+          value: "mongodb://acmeair-mongo:27017/acmeair"

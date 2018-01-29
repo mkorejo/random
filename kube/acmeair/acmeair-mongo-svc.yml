@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
  labels:
-   name: mongo
- name: mongo
+   k8s-app: acmeair-mongo
+ name: acmeair-mongo
 spec:
  ports:
    - port: 27017
      targetPort: 27017
  selector:
-   name: mongo
+   name: acmeair-mongo
