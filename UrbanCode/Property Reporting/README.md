@@ -5,11 +5,11 @@ There is a [Resources Utilities plugin](https://github.com/IBM-UrbanCode/Resourc
 
 `Property+Reporting.json` is a generic process for UrbanCode Deploy that uses the [Resources Utilities plugin](https://github.com/IBM-UrbanCode/Resource-Utilities-UCD), the [Web Utilities plugin](https://developer.ibm.com/urbancode/plugin/web-utilities-ibmucd), and the standard Groovy plugin. The process produces an output file that shows you all properties that would be used for a process request against an application environment. The output is tab-delimited, and several intermediary output files are also left in the working directory:
 
-![Sample Output](output.png "Sample Output")
+<p align="center"><img src="output.png" alt="Sample Output" width="80%"/></p>
 
 There are two main paths through the process: one which looks at resources and their properties and one that looks at everything else. For the resources, there is post-processing script to count the number of base resources and save them off, and then a switch to determine if there is a second base resource. Currently, the process only works for environments with up to two base resources but could be extended to accommodate three or more. Both the post-processing script and the process itself would have to be updated.
 
-![Process Flow](process.png "Process Flow")
+<p align="center"><img src="process.png" alt="Process Flow" width="75%"/></p>
 
 Before importing `Property+Reporting.json` you must install the required plugins. After importing you must set the password for each `Send HTTP Call` step (4) as well as for the process itself.
 
