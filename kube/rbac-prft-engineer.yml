@@ -1,0 +1,28 @@
+# Allows clients authenticated as "engineer" to perform basic edit actions in the "prft-sandbox" namespace
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: engineer-prft-sandbox-edit
+  namespace: prft-sandbox
+subjects:
+- kind: User
+  name: engineer
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: edit
+  apiGroup: ""
+---
+# Allows "engineer" to view resources throughout the cluster
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: engineer-view
+subjects:
+- kind: User
+  name: engineer
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: view
+  apiGroup: ""
