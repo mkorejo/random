@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: velocity
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    # Uncomment the next line if NGINX Ingress Controller is configured to do SSL offloading at load balancer level
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
+    certmanager.k8s.io/acme-challenge-type: http01
+spec:
+  # SSL offloading at ingress resource level
+  tls:
+  - hosts:
+    - k8s.perficientdevops.com
+    secretName: velocity-letsencrypt-prod
+  rules:
+  - http:
+      paths:
+      - path: /velocity
+        backend:
+          serviceName: velocity-ui
+          servicePort: 6005
+    host: k8s.perficientdevops.com
