@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: public-ip
+spec:
+  selector:
+    matchLabels:
+      kubernetes.io/role: agent
+  template:
+    metadata:
+      labels:
+        kubernetes.io/role: agent
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: curl
+        image: appropriate/curl
+        args: ['ifconfig.me']
