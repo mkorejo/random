@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/muradkurejo/.oh-my-zsh"
+export ZSH="/Users/muradkorejo/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -100,11 +100,13 @@ source $ZSH/oh-my-zsh.sh
 alias k='kubectl'
 alias kd='kubectl describe'
 alias kdel='kubectl delete'
+alias kedit='kubectl edit'
 alias kexec='kubectl exec -it'
 alias kg='kubectl get'
 alias kga='kubectl get all'
 alias kging='kubectl get ing'
 alias kgpo='kubectl get pod'
+alias kgpow='kubectl get pod -w'
 alias klog='kubectl logs'
 alias kns='kubens'
 alias kx='kubectx'
@@ -119,3 +121,6 @@ complete -o nospace -C /usr/local/bin/vault vault
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 KUBE_PS1_DIVIDER='|'
 PS1='$(kube_ps1)'$PS1
+
+# iTerm Shell Integration - https://iterm2.com/documentation-shell-integration.html
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
