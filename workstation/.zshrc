@@ -68,7 +68,7 @@ ZSH_THEME="frisk"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,9 +115,11 @@ export GOBIN=/Users/muradkurejo/go/bin
 export PATH=$PATH:$GOBIN
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-autoload -U +X bashcompinit && bashcompinit
+# Completions
+autoload -U compinit && compinit
 complete -o nospace -C /usr/local/bin/vault vault
 
+# https://github.com/jonmosco/kube-ps1
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 KUBE_PS1_DIVIDER='|'
 PS1='$(kube_ps1)'$PS1
