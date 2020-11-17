@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,13 +15,13 @@ export ZSH="/Users/muradkorejo/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="frisk"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "agnoster" "powerlevel10k/powerlevel10k" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -100,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 alias k='kubectl'
 alias kd='kubectl describe'
 alias kdel='kubectl delete'
+alias kdpo='kubectl describe pod'
 alias kedit='kubectl edit'
 alias kexec='kubectl exec -it'
 alias kg='kubectl get'
@@ -110,14 +118,19 @@ alias kgpow='kubectl get pod -w'
 alias klog='kubectl logs'
 alias kns='kubens'
 alias kx='kubectx'
+alias tfa='terraform apply'
+alias tfd='terraform destroy'
+alias tfi='terraform init'
+alias tfp='terraform plan'
 
-export GOBIN=/Users/muradkurejo/go/bin
+export GOBIN=/Users/muradkorejo/go/bin
 export PATH=$PATH:$GOBIN
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Completions
 autoload -U compinit && compinit
 complete -o nospace -C /usr/local/bin/vault vault
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # https://github.com/jonmosco/kube-ps1
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
@@ -126,3 +139,9 @@ PS1='$(kube_ps1)'$PS1
 
 # iTerm Shell Integration - https://iterm2.com/documentation-shell-integration.html
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+# Install Powerline Fonts from https://github.com/powerline/fonts for agnoster theme
+prompt_context() {}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
