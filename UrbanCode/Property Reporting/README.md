@@ -11,6 +11,6 @@ There are two main paths through the process: one which looks at resources and t
 
 <p align="center"><img src="process.png" alt="Process Flow" width="75%"/></p>
 
-Before importing `Property+Reporting.json` you must install the required plugins. After importing you must set the password for each `Send HTTP Call` step (4) as well as for the process itself.
+Before importing `Property+Reporting.json` you must install the required plugins. After importing you must set the password for each `Send HTTP Call` step (there are 4 of them) as well as for the process itself.
 
 Use IDs when specifying `Application` and `Application Environment`!
