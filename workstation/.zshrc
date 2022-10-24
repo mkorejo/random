@@ -31,7 +31,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -75,7 +75,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias k='kubectl'
+alias kaf='kubectl apply -f'
 alias kd='kubectl describe'
 alias kdel='kubectl delete'
 alias kdpo='kubectl describe pod'
@@ -118,19 +119,25 @@ alias kgpow='kubectl get pod -w'
 alias klog='kubectl logs'
 alias kns='kubens'
 alias kx='kubectx'
+alias stsauth='docker run --rm -it -v ~/.aws:/root/.aws -e AWS_PROFILE=default -e AWS_DEFAULT_REGION=us-east-1 mkorejo/stsauth:bbva'
 alias tfa='terraform apply'
-alias tfd='terraform destroy'
 alias tfi='terraform init'
 alias tfp='terraform plan'
 
 export GOBIN=/Users/muradkorejo/go/bin
-export PATH=$PATH:$GOBIN
+export PATH=$PATH:/usr/local/sbin:$GOBIN
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+function assume-role() {
+  OUT=$(aws sts assume-role --role-arn $1 --role-session-name $2);\
+  export AWS_ACCESS_KEY_ID=$(echo $OUT | jq -r '.Credentials''.AccessKeyId');\
+  export AWS_SECRET_ACCESS_KEY=$(echo $OUT | jq -r '.Credentials''.SecretAccessKey');\
+  export AWS_SESSION_TOKEN=$(echo $OUT | jq -r '.Credentials''.SessionToken');
+}
 
 # Completions
 autoload -U compinit && compinit
 complete -o nospace -C /usr/local/bin/vault vault
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # https://github.com/jonmosco/kube-ps1
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
@@ -138,10 +145,13 @@ KUBE_PS1_DIVIDER='|'
 PS1='$(kube_ps1)'$PS1
 
 # iTerm Shell Integration - https://iterm2.com/documentation-shell-integration.html
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
 # Install Powerline Fonts from https://github.com/powerline/fonts for agnoster theme
 prompt_context() {}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
