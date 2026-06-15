@@ -6,10 +6,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/muradkorejo/.oh-my-zsh"
+export ZSH="/Users/mkorejo/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -125,7 +125,8 @@ alias tfi='terraform init'
 alias tfp='terraform plan'
 
 export GOBIN=/Users/muradkorejo/go/bin
-export PATH=$PATH:/usr/local/sbin:$GOBIN
+export PATH="$GOBIN:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/opt/python@3/libexec/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 function assume-role() {
@@ -140,7 +141,7 @@ autoload -U compinit && compinit
 complete -o nospace -C /usr/local/bin/vault vault
 
 # https://github.com/jonmosco/kube-ps1
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 KUBE_PS1_DIVIDER='|'
 PS1='$(kube_ps1)'$PS1
 
@@ -155,3 +156,5 @@ prompt_context() {}
 
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
+
+. "$HOME/.local/bin/env"
